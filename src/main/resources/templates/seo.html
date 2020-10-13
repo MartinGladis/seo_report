@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seo Report</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>SEO Report</h1>
+    <table>
+        <tr>
+            <th>TAG</th>
+            <th>RESULT</th>
+        </tr>
+        <tr>
+            <td>URL</td>
+            <td th:text="${elements.getUrl()}"/>
+        </tr>
+        <tr>
+            <td>Title</td>
+            <td th:text="${elements.getTitle()}"/>
+        </tr>
+        <tr>
+            <td>Headers</td>
+            <td th:text="${elements.getHeaders()}"/>
+        </tr>
+        <tr>
+            <td>Canonical Tag</td>
+            <td th:text="${elements.getCanonicalTag()}"/>
+        </tr>
+        <tr>
+            <td>Alt in Images</td>
+            <td />
+        </tr>
+        <tr>
+            <td>Meta description</td>
+            <td />
+        </tr>
+        <tr>
+            <td>Meta keywords</td>
+            <td />
+        </tr>
+        <tr>
+            <td>Robots.txt</td>
+            <td />
+        </tr>
+        <tr>
+            <td>XML Sitemaps</td>
+            <td />
+        </tr>
+    </table>
+</div>
+</body>
+</html>

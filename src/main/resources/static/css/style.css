@@ -1,0 +1,29 @@
+.container {
+    font-family: "Courier New";
+    align-items: center;
+}
+.container {
+    font-family: "Courier New";
+}
+
+.container h1, .container form{
+    text-align: center;
+}
+
+.container table {
+    align-items: center;
+    margin: 20px auto;
+    padding: 0px;
+    width: 600px;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+.container table tr td:nth-child(1), .container table tr th:nth-child(1) {
+    width: 200px;
+}
+
+.container table td, .container table th {
+    border: 1px solid black;
+    padding: 5px;
+}

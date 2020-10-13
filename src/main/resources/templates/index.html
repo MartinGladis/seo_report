@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Seo Report</title>
+    <link rel="stylesheet" href="/css/style.css"/>
+</head>
+<body>
+<div class="container">
+    <h1>SEO Report</h1>
+    <form th:action="@{/}" th:object="${elements}" method="post">
+        <p>Set URL Site</p>
+        <input type="url" th:field="*{url}"><br><br>
+        <input type="submit" value="Create Report">
+    </form>
+</div>
+</body>
+</html>
