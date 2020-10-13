@@ -15,39 +15,39 @@
         </tr>
         <tr>
             <td>URL</td>
-            <td th:text="${elements.getUrl()}"/>
+            <td th:utext="${elements.getUrl()}"/>
         </tr>
         <tr>
             <td>Title</td>
-            <td th:text="${elements.getTitle()}"/>
+            <td th:utext="${elements.getTitle()}"/>
         </tr>
         <tr>
             <td>Headers</td>
-            <td th:text="${elements.getHeaders()}"/>
+            <td th:utext="${elements.getHeaders()}"/>
         </tr>
         <tr>
             <td>Canonical Tag</td>
-            <td th:text="${elements.getCanonicalTag()}"/>
+            <td th:utext="${elements.getCanonicalTag()}"/>
         </tr>
         <tr>
             <td>Alt in Images</td>
-            <td />
+            <td th:utext="${elements.getAltInImages()}"/>
         </tr>
         <tr>
             <td>Meta description</td>
-            <td />
+            <td th:utext="${elements.getMetaDescription()}"/>
         </tr>
         <tr>
             <td>Meta keywords</td>
-            <td />
+            <td th:utext="${elements.getMetaKeyowrds()}"/>
         </tr>
         <tr>
             <td>Robots.txt</td>
-            <td />
+            <td th:utext="${elements.getRobots()}"/>
         </tr>
         <tr>
             <td>XML Sitemaps</td>
-            <td />
+            <td th:utext="${elements.getSitemaps()}"/>
         </tr>
     </table>
 </div>

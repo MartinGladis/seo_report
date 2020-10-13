@@ -30,13 +30,15 @@ public class controller {
         Document doc = Jsoup.connect(elements.getUrl()).get();
 
         elements.setTitle(doc.title());
-        elements.setHeaders(getStringHeaders(doc, elements));
-        elements.setCanonicalTag(getStringCanonicalTag(doc, elements));
+        elements.setHeaders(getStringHeaders(doc));
+        elements.setCanonicalTag(getStringCanonicalTag(doc));
+        elements.setAltInImages(getStringAltInImages(doc));
+        elements.setMetaDescription(getStringMetaDescription(doc));
 
         return "seo";
     }
 
-    public String getStringHeaders(Document doc, SeoElements elements) {
+    public String getStringHeaders(Document doc) {
         Elements h1Elements = doc.select("h1");
         int h1Count = h1Elements.size();
         Elements h2Elements = doc.select("h2");
@@ -59,13 +61,46 @@ public class controller {
         return result;
     }
 
-    public String getStringCanonicalTag(Document doc, SeoElements elements) {
+    public String getStringCanonicalTag(Document doc) {
         Elements canonical = doc.select("link[rel=canonical]");
         String result;
         if (canonical.size() > 0)
             result = "Canonical tag exist";
         else
             result = "Canonical tag don't exist";
+        return result;
+    }
+
+    public String getStringAltInImages(Document doc) {
+        String result="";
+        Elements allImages = doc.select("img");
+        int countAllImages = allImages.size();
+        Elements imagesWithAlt = doc.select("img[alt]");
+        int countImagesWithAlt = imagesWithAlt.size();
+        int countImagesWithoutAlt = countAllImages - countImagesWithAlt;
+        Elements imagesWidthEmptyAlt = doc.select("img[alt='']");
+        int countImagesWidthEmptyAlt = imagesWidthEmptyAlt.size();
+        if (countImagesWithoutAlt == 0)
+            result += "All images have alt attribute<br>";
+        else
+            result += "Not all images have alt attribute<br>";
+
+        result += "All images: " + Integer.toString(countAllImages) +
+                "<br>Images with alt attribute: " + Integer.toString(countImagesWithAlt) +
+                "<br>Images without alt attribute: " + Integer.toString(countImagesWithoutAlt) +
+                "<br>Images with empty alt attribute: " + Integer.toString(countImagesWidthEmptyAlt);
+
+        return result;
+    }
+
+    public String getStringMetaDescription(Document doc) {
+        Elements desciptions = doc.select("meta[name=description]");
+        String result = "";
+        for (Element descption : desciptions) {
+            result = descption.attr("content");
+        }
+        if (result == "")
+            result = "NO DESCRIPTION";
         return result;
     }
 }
