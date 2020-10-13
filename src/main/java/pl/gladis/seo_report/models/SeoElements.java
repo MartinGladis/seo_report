@@ -7,7 +7,7 @@ public final class SeoElements {
     private String canonicalTag;
     private String altInImages;
     private String metaDescription;
-    private String metaKeyowrds;
+    private String metaKeywords;
     private String robots;
     private String sitemaps;
 
@@ -59,12 +59,12 @@ public final class SeoElements {
         this.metaDescription = metaDescription;
     }
 
-    public String getMetaKeyowrds() {
-        return metaKeyowrds;
+    public String getMetaKeywords() {
+        return metaKeywords;
     }
 
-    public void setMetaKeyowrds(String metaKeyowrds) {
-        this.metaKeyowrds = metaKeyowrds;
+    public void setMetaKeywords(String metaKeyowrds) {
+        this.metaKeywords = metaKeyowrds;
     }
 
     public String getRobots() {

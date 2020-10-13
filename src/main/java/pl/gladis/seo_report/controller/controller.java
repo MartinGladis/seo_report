@@ -37,7 +37,7 @@ public class controller {
         elements.setCanonicalTag(getStringCanonicalTag(doc));
         elements.setAltInImages(getStringAltInImages(doc));
         elements.setMetaDescription(getStringMetaDescription(doc));
-        elements.setMetaKeyowrds(getStringMetaKeywords(doc));
+        elements.setMetaKeywords(getStringMetaKeywords(doc));
         elements.setRobots(getStringRobots(doc, elements));
         elements.setSitemaps(getStringSitemaps(doc, elements));
 
