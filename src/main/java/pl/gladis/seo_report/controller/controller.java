@@ -11,7 +11,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import pl.gladis.seo_report.models.SeoElements;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.URL;
 
 @Controller
 public class controller {
@@ -34,6 +37,9 @@ public class controller {
         elements.setCanonicalTag(getStringCanonicalTag(doc));
         elements.setAltInImages(getStringAltInImages(doc));
         elements.setMetaDescription(getStringMetaDescription(doc));
+        elements.setMetaKeyowrds(getStringMetaKeywords(doc));
+        elements.setRobots(getStringRobots(doc, elements));
+        elements.setSitemaps(getStringSitemaps(doc, elements));
 
         return "seo";
     }
@@ -101,6 +107,54 @@ public class controller {
         }
         if (result == "")
             result = "NO DESCRIPTION";
+        return result;
+    }
+
+    public String getStringMetaKeywords(Document doc) {
+        Elements keywords = doc.select("meta[name=keywords]");
+        String result = "";
+        for (org.jsoup.nodes.Element key : keywords) {
+            result = key.attr("content");
+        }
+        if (result == "") result = "NO KEYWORDS";
+        return result;
+    }
+
+    public String getStringRobots(Document doc, SeoElements elements) {
+        String urlRobots = elements.getUrl() + "/robots.txt";
+        String result = "";
+        try {
+            BufferedReader in = new BufferedReader(
+                    new InputStreamReader(
+                            new URL(urlRobots).openStream()
+                    )
+            );
+            String line;
+            while ((line = in.readLine()) != null) {
+                if (line.matches("(.*)User-agent:(.*)") || line.matches("(.*)User-Agent:(.*)") || line.matches("(.*)user-agent:(.*)")) {
+                    result = "Robots.txt exist";
+                    break;
+                }
+                else result = "Robots.txt don't exist";
+            }
+            in.close();
+        } catch (Exception e) {
+            result = "Robots.txt don't exist";
+        }
+        return result;
+    }
+
+    public String getStringSitemaps(Document doc, SeoElements elements) {
+        String urlSitemap = elements.getUrl() + "/sitemap.xml";
+        String result = "";
+        try {
+            Document docSitemap = Jsoup.connect(urlSitemap).get();
+            Elements file = docSitemap.select("loc");
+            if (file.size() > 0) result = "Sitemap.xml exist";
+            else result = "Sitemap.xml don't exist";
+        } catch (Exception e) {
+            result = "Sitemap.xml don't exist";
+        }
         return result;
     }
 }

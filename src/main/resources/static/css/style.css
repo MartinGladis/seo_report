@@ -1,9 +1,5 @@
 .container {
     font-family: "Courier New";
-    align-items: center;
-}
-.container {
-    font-family: "Courier New";
 }
 
 .container h1, .container form{
@@ -26,4 +22,5 @@
 .container table td, .container table th {
     border: 1px solid black;
     padding: 5px;
+    vertical-align: top;
 }
