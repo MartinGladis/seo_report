@@ -63,8 +63,8 @@ public final class SeoElements {
         return metaKeywords;
     }
 
-    public void setMetaKeywords(String metaKeyowrds) {
-        this.metaKeywords = metaKeyowrds;
+    public void setMetaKeywords(String metaKeywords) {
+        this.metaKeywords = metaKeywords;
     }
 
     public String getRobots() {

@@ -30,7 +30,7 @@ public class controller {
     @PostMapping
     public String setSeo(@ModelAttribute SeoElements elements, Model model) throws IOException {
         model.addAttribute("elements", elements);
-        Document doc = Jsoup.connect(elements.getUrl()).get();
+        Document doc = Jsoup.connect("https://" + elements.getUrl()).get();
 
         elements.setTitle(doc.title());
         elements.setHeaders(getStringHeaders(doc));
@@ -121,15 +121,15 @@ public class controller {
     }
 
     public String getStringRobots(Document doc, SeoElements elements) {
-        String urlRobots = elements.getUrl() + "/robots.txt";
+        String urlRobots = "https://" + elements.getUrl() + "/robots.txt";
         String result = "";
+        String line;
         try {
             BufferedReader in = new BufferedReader(
                     new InputStreamReader(
                             new URL(urlRobots).openStream()
                     )
             );
-            String line;
             while ((line = in.readLine()) != null) {
                 if (line.matches("(.*)User-agent:(.*)") || line.matches("(.*)User-Agent:(.*)") || line.matches("(.*)user-agent:(.*)")) {
                     result = "Robots.txt exist";
@@ -145,7 +145,7 @@ public class controller {
     }
 
     public String getStringSitemaps(Document doc, SeoElements elements) {
-        String urlSitemap = elements.getUrl() + "/sitemap.xml";
+        String urlSitemap = "https://" + elements.getUrl() + "/sitemap.xml";
         String result = "";
         try {
             Document docSitemap = Jsoup.connect(urlSitemap).get();
